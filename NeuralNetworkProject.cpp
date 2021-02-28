@@ -1,5 +1,5 @@
 #include <iostream>
-//Cyril
+#include "NeuralNetwork.h"
 
 int main()
 {
