@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 #include "NeuralNetwork.h"
+=======
+>>>>>>> parent of 929a822 (sdfg)
 
 using namespace std;
 int main()
