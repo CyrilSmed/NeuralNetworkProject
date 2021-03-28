@@ -23,6 +23,7 @@ public:
 class Layer
 {
 private:
+
 public:
 	vector<Neuron> m_neurons; //todo make it private
 
@@ -41,4 +42,5 @@ public:
 	Layer outputLayer;//todo make it private?
 
 	Network(int numHiddenLayers, int numInputNeurons, int numHiddenNeurons, int numOutputNeurons);
+	void weightInitialization();
 };
