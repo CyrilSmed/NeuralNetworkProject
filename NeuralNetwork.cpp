@@ -14,7 +14,7 @@ float Neuron::getValue() { return m_value; }
 float Neuron::getBias() { return m_bias; }
 float Neuron::getWeightAt(int at) { return m_weights[at]; }
 
-//NeuronLayer
+//Layer
 Layer::Layer() {};
 Layer::Layer(int neuronCount)
 {
@@ -26,7 +26,7 @@ void Layer::resizeLayer(int neuronCount)
 }
 
 //Network
-Network::Network(int numHiddenLayers, int numInputNeurons, int numHiddenNeurons, int numOutputNeurons) // todo weights initialization
+Network::Network(int numHiddenLayers, int numInputNeurons, int numHiddenNeurons, int numOutputNeurons) 
 {
 	hiddenLayers.resize(numHiddenLayers);
 
@@ -38,4 +38,9 @@ Network::Network(int numHiddenLayers, int numInputNeurons, int numHiddenNeurons,
 	}
 
 	outputLayer.resizeLayer(numOutputNeurons);
+}
+
+void Network::weightInitialization()// todo
+{
+
 }
