@@ -32,7 +32,7 @@ public:
 	void resizeLayer(int neuronCount);
 };
 
-class Network
+class NeuralNetwork
 {
 private:
 
@@ -41,6 +41,7 @@ public:
 	vector<Layer> hiddenLayers;//todo make it private?
 	Layer outputLayer;//todo make it private?
 
-	Network(int numHiddenLayers, int numInputNeurons, int numHiddenNeurons, int numOutputNeurons);
+	NeuralNetwork(int numHiddenLayers, int numInputNeurons, int numHiddenNeurons, int numOutputNeurons);
 	void weightInitialization();
 };
+
