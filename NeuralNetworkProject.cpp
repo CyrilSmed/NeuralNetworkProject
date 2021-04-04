@@ -8,4 +8,6 @@ using namespace std;
 int main()
 {
 	NeuralNetwork curNetwork(1, 3, 3, 10);
+	curNetwork.weightInitialization();
+	system("pause");
 }

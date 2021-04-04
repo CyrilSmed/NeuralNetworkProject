@@ -1,46 +1,61 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
+#include <random>
 #include "NeuralNetwork.h"
 
 using namespace std;
 
-//Neuron
-Neuron::Neuron() {}
-void Neuron::setValue(const float value) { m_value = value; } //todo from 0 to 1
-void Neuron::setBias(const float bias) { m_bias = bias; }
-void Neuron::setWeightAt(int at, float value) { m_weights[at] = value; }
-
-float Neuron::getValue() { return m_value; }
-float Neuron::getBias() { return m_bias; }
-float Neuron::getWeightAt(int at) { return m_weights[at]; }
-
-//Layer
-Layer::Layer() {};
-Layer::Layer(int neuronCount)
-{
-	resizeLayer(neuronCount);
-}
-void Layer::resizeLayer(int neuronCount)
-{
-	m_neurons.resize(neuronCount);
-}
-
 //Network
 NeuralNetwork::NeuralNetwork(int numHiddenLayers, int numInputNeurons, int numHiddenNeurons, int numOutputNeurons) 
 {
-	hiddenLayers.resize(numHiddenLayers);
-
-	inputLayer.resizeLayer(numInputNeurons);
+	// InputLayer
+	inputLayer.resize(numInputNeurons);
 	
-	for (Layer layer : hiddenLayers)
+	// HiddenLayers
+	neuralLayers.resize(numHiddenLayers + 1);
+
+	for (int i = 0; i < neuralLayers.size() - 1; i++)
 	{
-		layer.resizeLayer(numHiddenNeurons);
+		neuralLayers[i].resize(numHiddenNeurons);
 	}
 
-	outputLayer.resizeLayer(numOutputNeurons);
+	// OutpuLayer
+	m_outputLayerIndex = numHiddenLayers;
+
+	neuralLayers[m_outputLayerIndex].resize(numOutputNeurons);
+
+	// Weights 
+	for (int layerIndex = 0; layerIndex < neuralLayers.size(); layerIndex++) // Слои
+	{
+		for (int neuronIndex = 0; neuronIndex < neuralLayers[layerIndex].size(); neuronIndex++) // Нейроны
+		{
+			if (layerIndex == 0)
+			{
+				neuralLayers[layerIndex][neuronIndex].weights.resize(inputLayer.size());
+			}
+			else
+			{
+				neuralLayers[layerIndex][neuronIndex].weights.resize(neuralLayers[layerIndex - 1].size());
+			}
+		}
+	}
 }
 
-void NeuralNetwork::weightInitialization()// todo
+void NeuralNetwork::weightInitialization()
 {
+	for (int layerIndex = 0; layerIndex < neuralLayers.size(); layerIndex++) // Слои
+	{
+		for (int neuronIndex = 0; neuronIndex < neuralLayers[layerIndex].size(); neuronIndex++) // Нейроны
+		{
+			for (int weightIndex = 0; weightIndex < neuralLayers[layerIndex][neuronIndex].weights.size(); weightIndex++) //Веса
+			{
+				neuralLayers[layerIndex][neuronIndex].weights[weightIndex] = (long double)rand() / (RAND_MAX); //todo -1 до 1?
+			}
+		}
+	}
+}
 
+void NeuralNetwork::calculateNeuronValues()
+{
+	//todo
 }
