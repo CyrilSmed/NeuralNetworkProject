@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	Network curNetwork(1, 3, 3, 10);
+	NeuralNetwork curNetwork(1, 3, 3, 10);
 
 	curNetwork.inputLayer.m_neurons[0].setValue(0.8);
 

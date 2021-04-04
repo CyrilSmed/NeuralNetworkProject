@@ -26,7 +26,7 @@ void Layer::resizeLayer(int neuronCount)
 }
 
 //Network
-Network::Network(int numHiddenLayers, int numInputNeurons, int numHiddenNeurons, int numOutputNeurons) 
+NeuralNetwork::NeuralNetwork(int numHiddenLayers, int numInputNeurons, int numHiddenNeurons, int numOutputNeurons) 
 {
 	hiddenLayers.resize(numHiddenLayers);
 
@@ -40,7 +40,7 @@ Network::Network(int numHiddenLayers, int numInputNeurons, int numHiddenNeurons,
 	outputLayer.resizeLayer(numOutputNeurons);
 }
 
-void Network::weightInitialization()// todo
+void NeuralNetwork::weightInitialization()// todo
 {
 
 }
