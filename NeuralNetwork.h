@@ -24,7 +24,7 @@ public:
 
 	void weightInitialization();
 
-	void calculateNeuronValues();
+	void forwardPropagation();
 };
 
 

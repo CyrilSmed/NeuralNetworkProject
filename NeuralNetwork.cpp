@@ -30,13 +30,9 @@ NeuralNetwork::NeuralNetwork(int numHiddenLayers, int numInputNeurons, int numHi
 		for (int neuronIndex = 0; neuronIndex < neuralLayers[layerIndex].size(); neuronIndex++) // Нейроны
 		{
 			if (layerIndex == 0)
-			{
 				neuralLayers[layerIndex][neuronIndex].weights.resize(inputLayer.size());
-			}
 			else
-			{
 				neuralLayers[layerIndex][neuronIndex].weights.resize(neuralLayers[layerIndex - 1].size());
-			}
 		}
 	}
 }
@@ -55,7 +51,7 @@ void NeuralNetwork::weightInitialization()
 	}
 }
 
-void NeuralNetwork::calculateNeuronValues()
+void NeuralNetwork::forwardPropagation()
 {
 	//todo
 }
