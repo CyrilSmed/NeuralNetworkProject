@@ -9,5 +9,11 @@ int main()
 {
 	NeuralNetwork curNetwork(1, 3, 3, 10);
 	curNetwork.weightInitialization();
-	system("pause");
+
+	curNetwork.testSetInput(111, 250, 5);
+
+	curNetwork.forwardPropagation();
+	
+	int pause;
+	cin >> pause;
 }

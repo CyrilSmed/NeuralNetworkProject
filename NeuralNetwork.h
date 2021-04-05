@@ -24,7 +24,9 @@ public:
 
 	void weightInitialization();
 
-	void calculateNeuronValues();
+	void forwardPropagation();
+
+	void testSetInput(int R, int G, int B);
 };
 
 
