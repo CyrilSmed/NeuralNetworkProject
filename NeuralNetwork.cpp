@@ -53,5 +53,33 @@ void NeuralNetwork::weightInitialization()
 
 void NeuralNetwork::forwardPropagation()
 {
-	//todo
+	for (int layerIndex = 0; layerIndex < neuralLayers.size(); layerIndex++) // Слои
+	{
+		for (int neuronIndex = 0; neuronIndex < neuralLayers[layerIndex].size(); neuronIndex++) // Нейроны
+		{
+			float weightedSum = 0;
+			for (int connectionIndex = 0; connectionIndex < neuralLayers[layerIndex][neuronIndex].weights.size(); connectionIndex++) //Веса
+			{
+				float weight = neuralLayers[layerIndex][neuronIndex].weights[connectionIndex];
+
+				float value = 0;
+				if (layerIndex == 0) value = inputLayer[connectionIndex];
+				else value = neuralLayers[layerIndex - 1][connectionIndex].value;
+
+				weightedSum += weight * value;
+			}
+			weightedSum += neuralLayers[layerIndex][neuronIndex].bias;
+			neuralLayers[layerIndex][neuronIndex].value = 1 / (1 + exp(-weightedSum));
+			cout << neuralLayers[layerIndex][neuronIndex].value << endl;
+		}
+	}
+
+}
+
+void NeuralNetwork::testSetInput(int R, int G, int B)
+{
+	inputLayer[0] = R / 255;
+	inputLayer[1] = G / 255;
+	inputLayer[2] = B / 255;
+
 }

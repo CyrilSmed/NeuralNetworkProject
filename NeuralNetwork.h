@@ -25,6 +25,8 @@ public:
 	void weightInitialization();
 
 	void forwardPropagation();
+
+	void testSetInput(int R, int G, int B);
 };
 
 
