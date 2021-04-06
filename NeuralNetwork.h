@@ -26,7 +26,9 @@ public:
 
 	void forwardPropagation();
 
-	void testSetInput(int R, int G, int B);
+	void testSetInputColor(float R, float G, float B);
+
+	void testPrintValues();
 };
 
 
