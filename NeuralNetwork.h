@@ -26,8 +26,9 @@ public:
 
 	void forwardPropagation();
 
-	void testSetInputColor(float R, float G, float B);
+	float costFunction(const vector<float> solution);
 
+	void testSetInputColor(float R, float G, float B);
 	void testPrintValues();
 };
 

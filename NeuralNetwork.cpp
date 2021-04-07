@@ -80,6 +80,22 @@ void NeuralNetwork::forwardPropagation()
 
 }
 
+float NeuralNetwork::costFunction(const vector<float> solution) // Подсчет коэффициента ошибки (cost)
+{
+	if (solution.size() == neuralLayers[m_outputLayerIndex].size())
+	{
+		float cost = 0;
+
+		for (int outputNeuronIndex = 0; outputNeuronIndex < neuralLayers[m_outputLayerIndex].size(); outputNeuronIndex++) // Нейроны выходного слоя и решения
+		{
+			float curValue = neuralLayers[m_outputLayerIndex][outputNeuronIndex].value;
+			cost += (curValue - solution[outputNeuronIndex]) * (curValue - solution[outputNeuronIndex]);
+		}
+		return cost;
+	}
+	else return 0;
+}
+
 // Test Functions
 void NeuralNetwork::testSetInputColor(float R, float G, float B)
 {
