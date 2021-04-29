@@ -14,32 +14,34 @@ struct Neuron
 class NeuralNetwork
 {
 private:
+	static const string m_colorLabels[13];
 	int m_outputLayerIndex = 0;
-	const float learningrate = 0.2;
-
-	void weightsUpdate();
-	void backPropagation();
-
-public:
-	void calculateErrors(const vector<float> expected); // todo make private
+	float m_learningRate = 0.2;
  	vector<float> inputLayer;
 	vector<vector<Neuron>> neuralLayers;
 
+	void initializeWeightsRandomly();
+
+	void forwardPropagate();
+	void backwardPropagateErrors(const vector<float> expected);
+	void updateWeights();
+
+	float calculateErrorSum(const vector<float> expected);
+	float runTestingDataSet(const string testingDataSetFileName, const char delimChar = ',');
+
+	void setInputs(const vector<float> inputs);
+	int getResultIndex();
+
+public:
+
 	NeuralNetwork(int numHiddenLayers, int numInputNeurons, int numHiddenNeurons, int numOutputNeurons);
-	NeuralNetwork(string initializeFileName);
+	NeuralNetwork(string initFileName, char delimChar = ',');
 
-	void weightInitialization();
+	void trainNetwork(const string trainingDataSetFileName, const string testingDataSetFileName, 
+		const int epochNum, const float learningRate, const char delimChar = ',');
 
-	void forwardPropagation();
+	void saveNetwork(const string saveFileName, const char delimChar = ',');
 
-	void saveNetwork(string saveFileName);
-	void fileInitialize(string initializeFileName);
-
-	void testSetInput(float inputOne, float inputTwo);
-	void testSetInputColor(float R, float G, float B);
-	void testPrintValues();
-	void testPrintResult();
+	bool testInterface();
 };
-
-
 
