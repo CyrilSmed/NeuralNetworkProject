@@ -1,39 +1,24 @@
-﻿#include <stdio.h>  // for pause and cls
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
-#include <fstream> // File Management
 #include <string>
-#include <sstream> // File Management
-#include <Windows.h> // for CopyFile
+#include <stdio.h>  // pause and cls
+#include <fstream> // file Management
+#include <sstream> // file Management
 #include "NeuralNetwork.h"
-
 
 using namespace std;
 
 int main()
 {
-	/*
-	NeuralNetwork curNetwork(1, 3, 3, 13);
-	curNetwork.weightInitialization();
+	// Инициализировать новую сеть
+	NeuralNetwork testNetwork(1, 3, 6, 13);
 
+	// Инициализировать старую сеть файлом
+	//NeuralNetwork testNetwork("network_data.csv");
 
-	int R = 0;
-	int G = 0;
-	int B = 0;
-	cout << endl << "Input RGB values:" << endl;
-	cin >> R >> G >> B;
+	testNetwork.trainNetwork("training_data_set.csv", "testing_data_set.csv", 50, 0.2);
 
-	curNetwork.testSetInputColor(R, G, B);
-	curNetwork.testPrintValues();
-	curNetwork.testPrintResult();
-	*/
-
-	NeuralNetwork testNetwork("network_data.csv");
-	testNetwork.testSetInput(1, 1);
-	testNetwork.forwardPropagation();
-	vector<float> expected = { 0, 1 };
-	testNetwork.calculateErrors(expected);
-
+	while (testNetwork.testInterface());
 	testNetwork.saveNetwork("network_data.csv");
 
 	int pause;
