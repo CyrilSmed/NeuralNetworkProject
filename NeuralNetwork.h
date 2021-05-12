@@ -23,14 +23,15 @@ private:
 	void initializeWeightsRandomly();
 
 	void forwardPropagate();
+	float calculateErrorSum(const vector<float> expected);
 	void backwardPropagateErrors(const vector<float> expected);
 	void updateWeights();
 
-	float calculateErrorSum(const vector<float> expected);
 	float runTestingDataSet(const string testingDataSetFileName, const char delimChar = ',');
 
 	void setInputs(const vector<float> inputs);
 	int getResultIndex();
+	void printStats();
 
 public:
 
