@@ -361,6 +361,35 @@ int NeuralNetwork::getResultIndex()
 	}
 	return maxElIndex;
 }
+void NeuralNetwork::printStats()
+{
+	int bestGuesses[3]{ -1, -1, -1 };
+	float curBestVal = 0;
+
+	for (int guess = 0; guess < 3; guess++)
+	{
+		for (int outIndex = 0; outIndex < neuralLayers[m_outputLayerIndex].size(); outIndex++)
+		{
+			if (outIndex != bestGuesses[0] &&
+				outIndex != bestGuesses[1] &&
+				outIndex != bestGuesses[2] &&
+				neuralLayers[m_outputLayerIndex][outIndex].value > curBestVal)
+			{
+				curBestVal = neuralLayers[m_outputLayerIndex][outIndex].value;
+				bestGuesses[guess] = outIndex;
+			}
+		}
+		curBestVal = 0;
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		if (bestGuesses[i] > 0 && bestGuesses[i] < neuralLayers[m_outputLayerIndex].size())
+		{
+			cout << m_colorLabels[bestGuesses[i]] << "	-	" << neuralLayers[m_outputLayerIndex][bestGuesses[i]].value * 100 << "%" << endl;
+		}
+
+	}
+}
 bool NeuralNetwork::testInterface()
 {
 	int R, G, B;
@@ -375,6 +404,7 @@ bool NeuralNetwork::testInterface()
 	forwardPropagate();
 
 	cout << "The color you have entered is: " << m_colorLabels[getResultIndex()] << endl;
+	printStats();
 	return true;
 }
 
