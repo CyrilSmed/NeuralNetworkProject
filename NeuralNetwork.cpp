@@ -385,7 +385,7 @@ void NeuralNetwork::printStats()
 	{
 		if (bestGuesses[i] > 0 && bestGuesses[i] < neuralLayers[m_outputLayerIndex].size())
 		{
-			cout << m_colorLabels[bestGuesses[i]] << "	-	" << neuralLayers[m_outputLayerIndex][bestGuesses[i]].value * 100 << "%" << endl;
+			cout << "	" << m_colorLabels[bestGuesses[i]] << "	-	" << neuralLayers[m_outputLayerIndex][bestGuesses[i]].value * 100 << "%" << endl;
 		}
 
 	}
@@ -407,4 +407,3 @@ bool NeuralNetwork::testInterface()
 	printStats();
 	return true;
 }
-
